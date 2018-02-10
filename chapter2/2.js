@@ -4,7 +4,7 @@ for (var x = 1; x <= 100; x++)
 	var three = (x % 3) == 0;
 	if (three && five)
 		console.log('FizzBuzz');
-	if (three)
+	else if (three)
 		console.log('Fizz');
 	else if (five)
 		console.log('Buzz');
