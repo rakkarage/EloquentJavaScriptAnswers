@@ -1,10 +1,10 @@
 const height = 4;
 const width = 2;
-var output = '';
-var fill = false;
-for (var y = 0; y < height; y++)
+let output = '';
+let fill = false;
+for (let y = 0; y < height; y++)
 {
-	for (var x = 0; x < width; x++)
+	for (let x = 0; x < width; x++)
 	{
 		output += fill ? '#' : ' ';
 		fill = !fill;
