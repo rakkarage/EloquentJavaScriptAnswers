@@ -1,5 +1,5 @@
 let data = '#';
-for (let x = 0; x < 7; x++) {
+for (let i = 0; i < 7; i++) {
 	console.log(data);
 	data += '#';
 }

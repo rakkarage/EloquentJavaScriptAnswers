@@ -1,7 +1,7 @@
-for (let x = 1; x <= 100; x++)
+for (let i = 1; i <= 100; i++)
 {
-	const five = (x % 5) == 0;
-	const three = (x % 3) == 0;
+	const five = (i % 5) == 0;
+	const three = (i % 3) == 0;
 	if (three && five)
 		console.log('FizzBuzz');
 	else if (three)
@@ -9,5 +9,5 @@ for (let x = 1; x <= 100; x++)
 	else if (five)
 		console.log('Buzz');
 	else
-		console.log(x);
+		console.log(i);
 }
