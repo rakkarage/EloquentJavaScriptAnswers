@@ -23,10 +23,10 @@ function nth(list, n) {
 	let node = list;
 	for (let i = 0; node && i < n; i++)
 		node = node.rest;
-	return (node == null) ? undefined : node.value;
+	return (node === null) ? undefined : node.value;
 }
 function nthRecursive(list, n) {
-	if (n == 0 || list.rest == null) return list.value;
+	if (n === 0 || list.rest === null) return list.value;
 	else return nthRecursive(list.rest, n - 1);
 }
 logList(arrayToList([10, 20, 30, 40, 50]));

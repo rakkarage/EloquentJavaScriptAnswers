@@ -1,7 +1,7 @@
 function countChar(value, character) {
 	let count = 0;
 	for (let i = 0; i < value.length; i++) {
-		if (value[i] == character)
+		if (value[i] === character)
 			count++;
 	}
 	return count;
