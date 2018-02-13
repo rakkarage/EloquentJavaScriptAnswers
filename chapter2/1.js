@@ -1,5 +1,2 @@
-let data = '#';
-for (let i = 0; i < 7; i++) {
-	console.log(data);
-	data += '#';
-}
+for (var line = '#'; line.length < 8; line += '#')
+	console.log(line);

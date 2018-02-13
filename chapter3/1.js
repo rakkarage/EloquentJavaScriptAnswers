@@ -1,9 +1,7 @@
 function min(a, b) {
-	let aMin = a < b;
-	let bMin = b < a;
-	if (aMin)
+	if (a < b)
 		return a;
-	else if (bMin)
+	else
 		return b;
 }
 console.log(min(0, 10));
