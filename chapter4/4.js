@@ -3,36 +3,36 @@ function deepEqualJSON(a, b) {
 }
 function deepEqual(a, b) {
 	if (a === b)
-		return true;
+		return true
 	if (!(a instanceof Object) || !(b instanceof Object))
-		return false;
+		return false
 	if (a.constructor !== b.constructor)
-		return false;
+		return false
 	for (let p in a) {
 		if (!a.hasOwnProperty(p))
-			continue;
+			continue
 		if (!b.hasOwnProperty(p))
-			return false;
+			return false
 		if (a[p] === b[p])
-			continue;
+			continue
 		if (typeof a[p] != 'object')
-			return false;
+			return false
 		if (!deepEqual(a[p], b[p]))
-			return false;
+			return false
 	}
 	for (let p in b)
 		if (b.hasOwnProperty(p) && !a.hasOwnProperty(p))
-			return false;
-	return true;
+			return false
+	return true
 }
-let obj = {here: {is: 'an'}, object: 2};
-console.log(deepEqual(obj, obj));
-console.log(deepEqual(obj, {here: 1, object: 2}));
-console.log(deepEqual(obj, {here: {is: 'an'}, object: 2}));
-console.log(deepEqual(1, 1));
-console.log(deepEqual(1, 2));
-console.log(deepEqualJSON(obj, obj));
-console.log(deepEqualJSON(obj, {here: 1, object: 2}));
-console.log(deepEqualJSON(obj, {here: {is: 'an'}, object: 2}));
-console.log(deepEqualJSON(1, 1));
-console.log(deepEqualJSON(1, 2));
+let obj = {here: {is: 'an'}, object: 2}
+console.log(deepEqual(obj, obj))
+console.log(deepEqual(obj, {here: 1, object: 2}))
+console.log(deepEqual(obj, {here: {is: 'an'}, object: 2}))
+console.log(deepEqual(1, 1))
+console.log(deepEqual(1, 2))
+console.log(deepEqualJSON(obj, obj))
+console.log(deepEqualJSON(obj, {here: 1, object: 2}))
+console.log(deepEqualJSON(obj, {here: {is: 'an'}, object: 2}))
+console.log(deepEqualJSON(1, 1))
+console.log(deepEqualJSON(1, 2))

@@ -1,8 +1,8 @@
 for (let i = 1; i <= 100; i++) {
-	let output = '';
+	let output = ''
 	if (i % 3)
-		output += 'Fizz';
+		output += 'Fizz'
 	if (i % 5)
-		output += 'Buzz';
-	console.log(output || i);
+		output += 'Buzz'
+	console.log(output || i)
 }
