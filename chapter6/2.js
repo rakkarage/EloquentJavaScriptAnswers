@@ -4,8 +4,8 @@ class Group {
 	}
 	static from(o) {
 		let g = new Group()
-		for (let i = 0; i < o.length; i++)
-			g.add(o[i])
+		for (let i of o)
+			g.add(i)
 		return g;
 	}
 	add(i) {
