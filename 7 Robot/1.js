@@ -10,11 +10,10 @@ const roads = [
 function buildGraph(edges) {
 	let graph = Object.create(null)
 	function addEdge(from, to) {
-		if (graph[from] == null) {
+		if (graph[from] == null)
 			graph[from] = [to]
-		} else {
+		else
 			graph[from].push(to)
-		}
 	}
 	for (let [from, to] of edges.map(r => r.split('-'))) {
 		addEdge(from, to)
@@ -29,9 +28,9 @@ class VillageState {
 		this.parcels = parcels
 	}
 	move(destination) {
-		if (!roadGraph[this.place].includes(destination)) {
+		if (!roadGraph[this.place].includes(destination))
 			return this
-		} else {
+		else {
 			let parcels = this.parcels.map(p => {
 				if (p.place != this.place) return p
 				return { place: destination, address: p.address }
@@ -40,10 +39,7 @@ class VillageState {
 		}
 	}
 }
-let first = new VillageState(
-	'Post Office',
-	[{ place: 'Post Office', address: "Alice's House" }]
-)
+let first = new VillageState('Post Office', [{ place: 'Post Office', address: "Alice's House" }])
 let next = first.move("Alice's House")
 console.log(next.place)
 console.log(next.parcels)
@@ -87,9 +83,8 @@ const mailRoute = [
 	'Marketplace', 'Post Office'
 ]
 function routeRobot(state, memory) {
-	if (memory.length == 0) {
+	if (memory.length == 0)
 		memory = mailRoute
-	}
 	return { direction: memory[0], memory: memory.slice(1) }
 }
 runRobot(VillageState.random(), routeRobot, [])
@@ -99,20 +94,18 @@ function findRoute(graph, from, to) {
 		let { at, route } = work[i]
 		for (let place of graph[at]) {
 			if (place == to) return route.concat(place)
-			if (!work.some(w => w.at == place)) {
+			if (!work.some(w => w.at == place))
 				work.push({ at: place, route: route.concat(place) })
-			}
 		}
 	}
 }
 function goalOrientedRobot({ place, parcels }, route) {
 	if (route.length == 0) {
 		let parcel = parcels[0]
-		if (parcel.place != place) {
+		if (parcel.place != place)
 			route = findRoute(roadGraph, place, parcel.place)
-		} else {
+		else
 			route = findRoute(roadGraph, place, parcel.address)
-		}
 	}
 	return { direction: route[0], memory: route.slice(1) }
 }
