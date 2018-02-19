@@ -7,9 +7,6 @@ const roads = [
 	'Marketplace-Post Office', 'Marketplace-Shop',
 	'Marketplace-Town Hall', 'Shop-Town Hall'
 ]
-module.exports.test = function (i) {
-	debug.log('test: ' + i)
-}
 module.exports.buildGraph = function (edges) {
 	let graph = Object.create(null)
 	function addEdge(from, to) {
