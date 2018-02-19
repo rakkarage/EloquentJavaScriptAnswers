@@ -7,7 +7,10 @@ const roads = [
 	'Marketplace-Post Office', 'Marketplace-Shop',
 	'Marketplace-Town Hall', 'Shop-Town Hall'
 ]
-function buildGraph(edges) {
+module.exports.test = function (i) {
+	debug.log('test: ' + i)
+}
+module.exports.buildGraph = function (edges) {
 	let graph = Object.create(null)
 	function addEdge(from, to) {
 		if (graph[from] == null)
@@ -21,7 +24,7 @@ function buildGraph(edges) {
 	}
 	return graph
 }
-const roadGraph = buildGraph(roads)
+const roadGraph = module.exports.buildGraph(roads)
 class VillageState {
 	constructor(place, parcels) {
 		this.place = place
@@ -39,12 +42,13 @@ class VillageState {
 		}
 	}
 }
+module.exports = VillageState;
 let first = new VillageState('Post Office', [{ place: 'Post Office', address: "Alice's House" }])
 let next = first.move("Alice's House")
 console.log(next.place)
 console.log(next.parcels)
 console.log(first.place)
-function runRobot(state, robot, memory) {
+module.exports.runRobot = function (state, robot, memory) {
 	for (let turn = 0; ; turn++) {
 		if (state.parcels.length == 0) {
 			console.log(`Done in ${turn} turns`)
@@ -75,20 +79,20 @@ VillageState.random = function (parcelCount = 5) {
 	}
 	return new VillageState('Post Office', parcels)
 };
-runRobot(VillageState.random(), randomRobot)
+module.exports.runRobot(VillageState.random(), randomRobot)
 const mailRoute = [
 	"Alice's House", 'Cabin', "Alice's House", "Bob's House",
 	'Town Hall', "Daria's House", "Ernie's House",
 	"Grete's House", 'Shop', "Grete's House", 'Farm',
 	'Marketplace', 'Post Office'
 ]
-function routeRobot(state, memory) {
+module.exports.routeRobot = function (state, memory) {
 	if (memory.length == 0)
 		memory = mailRoute
 	return { direction: memory[0], memory: memory.slice(1) }
 }
-runRobot(VillageState.random(), routeRobot, [])
-function findRoute(graph, from, to) {
+module.exports.runRobot(VillageState.random(), module.exports.routeRobot, [])
+module.exports.findRoute = function (graph, from, to) {
 	let work = [{ at: from, route: [] }]
 	for (let i = 0; i < work.length; i++) {
 		let { at, route } = work[i]
@@ -99,14 +103,14 @@ function findRoute(graph, from, to) {
 		}
 	}
 }
-function goalOrientedRobot({ place, parcels }, route) {
+module.exports.goalOrientedRobot = function ({ place, parcels }, route) {
 	if (route.length == 0) {
 		let parcel = parcels[0]
 		if (parcel.place != place)
-			route = findRoute(roadGraph, place, parcel.place)
+			route = module.exports.findRoute(roadGraph, place, parcel.place)
 		else
-			route = findRoute(roadGraph, place, parcel.address)
+			route = module.exports.findRoute(roadGraph, place, parcel.address)
 	}
 	return { direction: route[0], memory: route.slice(1) }
 }
-runRobot(VillageState.random(), goalOrientedRobot, [])
+module.exports.runRobot(VillageState.random(), module.exports.goalOrientedRobot, [])
