@@ -40,11 +40,11 @@ class VillageState {
 	}
 }
 module.exports = VillageState;
-let first = new VillageState('Post Office', [{ place: 'Post Office', address: "Alice's House" }])
-let next = first.move("Alice's House")
-console.log(next.place)
-console.log(next.parcels)
-console.log(first.place)
+// let first = new VillageState('Post Office', [{ place: 'Post Office', address: "Alice's House" }])
+// let next = first.move("Alice's House")
+// console.log(next.place)
+// console.log(next.parcels)
+// console.log(first.place)
 module.exports.runRobot = function (state, robot, memory) {
 	for (let turn = 0; ; turn++) {
 		if (state.parcels.length == 0) {
@@ -76,7 +76,7 @@ VillageState.random = function (parcelCount = 5) {
 	}
 	return new VillageState('Post Office', parcels)
 };
-module.exports.runRobot(VillageState.random(), randomRobot)
+// module.exports.runRobot(VillageState.random(), randomRobot)
 const mailRoute = [
 	"Alice's House", 'Cabin', "Alice's House", "Bob's House",
 	'Town Hall', "Daria's House", "Ernie's House",
@@ -88,7 +88,7 @@ module.exports.routeRobot = function (state, memory) {
 		memory = mailRoute
 	return { direction: memory[0], memory: memory.slice(1) }
 }
-module.exports.runRobot(VillageState.random(), module.exports.routeRobot, [])
+// module.exports.runRobot(VillageState.random(), module.exports.routeRobot, [])
 module.exports.findRoute = function (graph, from, to) {
 	let work = [{ at: from, route: [] }]
 	for (let i = 0; i < work.length; i++) {
@@ -110,4 +110,4 @@ module.exports.goalOrientedRobot = function ({ place, parcels }, route) {
 	}
 	return { direction: route[0], memory: route.slice(1) }
 }
-module.exports.runRobot(VillageState.random(), module.exports.goalOrientedRobot, [])
+// module.exports.runRobot(VillageState.random(), module.exports.goalOrientedRobot, [])
